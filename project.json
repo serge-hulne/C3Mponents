@@ -1,0 +1,14 @@
+{
+  "langrev": "1",
+  "version": "0.1.0",
+  "authors": [],
+  "warnings": ["no-unused"],
+  "sources": ["src/**"],
+  "output": "build",
+  "targets": {
+    "example": {
+      "type": "executable"
+    }
+  },
+  "opt": "O0"
+}
