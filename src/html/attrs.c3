@@ -101,8 +101,8 @@ fn Node* aria(String name, String v)
 {
     DString buf;
     buf.tinit(32);
-    buf.append_chars("aria-");
-    buf.append_chars(name);
+    buf.append_string("aria-");
+    buf.append_string(name);
     return c3mponents::attr(buf.str_view(), v);
 }
 
@@ -112,8 +112,8 @@ fn Node* data_attr(String name, String v)
 {
     DString buf;
     buf.tinit(32);
-    buf.append_chars("data-");
-    buf.append_chars(name);
+    buf.append_string("data-");
+    buf.append_string(name);
     return c3mponents::attr(buf.str_view(), v);
 }
 
@@ -123,7 +123,7 @@ fn Node* hx(String name, String v)
 {
     DString buf;
     buf.tinit(32);
-    buf.append_chars("hx-");
-    buf.append_chars(name);
+    buf.append_string("hx-");
+    buf.append_string(name);
     return c3mponents::attr(buf.str_view(), v);
 }

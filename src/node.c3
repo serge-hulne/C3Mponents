@@ -48,7 +48,7 @@ fn void Node.render(Node* self, DString* buf)
     {
         case ELEM:
             buf.append_char('<');
-            buf.append_chars(self.name);
+            buf.append_string(self.name);
             // First pass: write attribute-type children inside the opening tag
             foreach (child : self.children)
             {
@@ -62,27 +62,27 @@ fn void Node.render(Node* self, DString* buf)
                 {
                     if (child != null) child.render_as(buf, false);
                 }
-                buf.append_chars("</");
-                buf.append_chars(self.name);
+                buf.append_string("</");
+                buf.append_string(self.name);
                 buf.append_char('>');
             }
 
         case ATTR:
             buf.append_char(' ');
-            buf.append_chars(self.name);
-            buf.append_chars("=\"");
+            buf.append_string(self.name);
+            buf.append_string("=\"");
             html_escape(self.content, buf);
             buf.append_char('"');
 
         case ATTR_BOOL:
             buf.append_char(' ');
-            buf.append_chars(self.name);
+            buf.append_string(self.name);
 
         case TEXT:
             html_escape(self.content, buf);
 
         case RAW:
-            buf.append_chars(self.content);
+            buf.append_string(self.content);
 
         case GROUP:
             // Groups expand transparently, skipping bare attributes
@@ -92,7 +92,7 @@ fn void Node.render(Node* self, DString* buf)
             }
 
         case DOCTYPE:
-            buf.append_chars("<!doctype html>");
+            buf.append_string("<!doctype html>");
             if (self.children.len > 0 && self.children[0] != null)
             {
                 self.children[0].render(buf);
@@ -141,11 +141,11 @@ fn void html_escape(String s, DString* buf)
     {
         switch (c)
         {
-            case '&':  buf.append_chars("&amp;");
-            case '<':  buf.append_chars("&lt;");
-            case '>':  buf.append_chars("&gt;");
-            case '"':  buf.append_chars("&#34;");
-            case '\'': buf.append_chars("&#39;");
+            case '&':  buf.append_string("&amp;");
+            case '<':  buf.append_string("&lt;");
+            case '>':  buf.append_string("&gt;");
+            case '"':  buf.append_string("&#34;");
+            case '\'': buf.append_string("&#39;");
             default:   buf.append_char(c);
         }
     }
